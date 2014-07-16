@@ -1,0 +1,55 @@
+<html>
+ <head>
+ 	<title> Forms </title>
+ 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 	<script type="text/javascript">
+			$(function(){
+				$('#post_form').submit(function()
+				{
+					var errors = []; 
+					if ($('#email').val() == "" || $('#name').val() == "" )
+					{
+						//alert($("email is empty OR your name is empty");
+						if ($('#email').val() == "" &&  $('#name').val() == "") 
+						{ 
+							errors.push("both are empty");
+							//alert("both of them are empty")
+							//return false
+						}
+						else if($('#name').val() == "" )
+						{
+							//alert("your name is empty")
+							errors.push("your name is empty")
+						}
+						else
+						{
+							//alert("your email is empty or something else")
+							errors.push("your email is empty or something else")
+						}
+						//return false
+					} 
+					if(errors.length == 0)
+					{
+						return true
+					}
+					else
+					{
+						alert( errors.join('\r\n') )
+						return false
+					}
+				})
+			})
+ 	</script>
+ </head>
+ <body>
+ 	<form action="/namereceive" id="post_form" method="post">
+ 		<input type = "text" id="name" name = "name" size = "30" maxlength="100"> 
+ 		<br /> 
+ 		<input type = "email" id="email" name="email" size="30" maxlength="100">
+ 		<input type="submit" value="Submit review" />
+ 	</form>
+ 	<div>Hello <%= @name %></div>
+ 	<div>Email <%= @email %> </div>
+ </body>
+ </html>
+
